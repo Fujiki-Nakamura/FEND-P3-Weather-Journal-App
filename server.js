@@ -15,13 +15,23 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
-app.use(cors);
+app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('website'));
 
+app.get('/api', (req, res) => {
+    // res.send(projectData)
+    res.status(200).send('Hello World')
+})
+
+app.post('/api', (req, res) => {
+    console.log(req.body)
+    res.status(201).send(projectData)
+})
+
 // Setup Server
-const port = 8000;
+const port = 3000
 const server = app.listen(port, () => {
-    console.log(`the server is running on localhost: ${port}`);
+    console.log(`the server is running on http://localhost:${port}`);
 })
